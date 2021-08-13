@@ -11,7 +11,7 @@ app.use(express.static(path.join(__dirname, '/public')));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 // mounting on /api
-app.use('/api', require('./server/index'));
+app.use('/api', require('./server/api/index'));
 
 // our server should send its index.html for any requests that don't match one of our API routes.
 app.get('*', (req, res) => {
@@ -21,6 +21,6 @@ app.get('*', (req, res) => {
 app.use((err, req, res, next) => {
     res.status(err.status || 500).send(err.message || 'Internal server error');
 })
-const PORT = 8080;
-app.listen(PORT, () => console.log(`server: listening on port ${PORT}`));
+
+module.exports = app;
 

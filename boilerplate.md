@@ -1,9 +1,9 @@
-# First Steps
+# **First Steps**
 ## [>] create project folder
 ## [>] npm init (-y for quick setup)
 ## [>] git init, then touch .gitignore
 ## [>] ignore node_modules, bundle.js, bundle.map.js, etc
-# React
+# **React**
 ## [>] create index.html, include html, head (with meta and script tags), body (with a div tag and id)
 ```
 <!DOCTYPE html>
@@ -32,7 +32,7 @@
 
 </html>
 ```
-## [>] Set up main express app
+# **Set up main express app**
 ```
 const express = require('express');
 const app = express();
@@ -62,7 +62,7 @@ app.listen(PORT, () => console.log(`server: listening on port ${PORT}`));
 ```
 ## [>] Set up routers in server file, with the index.js as a place to collect all of the routers.
 
-# Back to React (Webpack, Babel)
+# **Back to React (Webpack, Babel)**
 ## [>] `npm install --save-dev webpack webpack-cli @babel/core babel-loader @babel/preset-react`
 ## [>] `npm install react react-dom react-router-dom`
 ## Decide on an entry file location for webpack.
@@ -115,3 +115,48 @@ ReactDOM.render(
     "start-dev": "webpack -w & nodemon app"
   },
 ```
+
+# **Redux**
+## [>] Setup Redux Boilerplate
+- store is going to be a folder that contains the actions (action creators, action types), the effects (thunk creators), the reducers (root reducer and sub reducers that control a slice of state), and the store (createStore with particular arguments).
+
+# **CSS | Webpack**
+## [>] Webpack can not only build JavaScript files, it can build you css files into a single css file. This means you can write you css, import it as if it were a JS module and webpack will take care of the rest.
+## [>] `npm install --save-dev style-loader css-loader`
+## [>] Update the webpack config file to handle .css. Notice howw the presets for .jsx change, and how we will now use the style-loader/css-loader combos for anything matching the .css extension
+```
+module.exports = {
+	entry: ['./client/index.js'],
+	output: {
+		path: __dirname,
+		filename: './public/bundle.js',
+	},
+	devtool: 'source-map',
+	module: {
+		rules: [
+			{
+				test: /\.jsx?$/,
+				exclude: /(node_modules|bower_components)/,
+				loader: 'babel-loader',
+				options: {
+					presets: ['@babel/preset-react'],
+				},
+			},
+			{
+				test: /\.css$/,
+				use: ['style-loader', 'css-loader'],
+			},
+		],
+	},
+	mode: 'development',
+};
+```
+## Now, we need to create an entry point for our css styles. I called mine 'index.css'.
+## **NOTE:** You can now import './index.css' into a JavaScript file - webpack will then include it in the build path. However, because we've told webpack to build any files ending with .css using the style-related loaders. It will transform our css files into a file that it loads directly onto the DOM from our bundle.js.
+
+# Side Note: Environment Variables
+## [>] `npm install dotenv`
+## [>] `require('dotenv').config(path/to/env/file)`
+## [>] Dotenv loads environment variables from a .env file into process.env.
+
+# Sequelize

@@ -159,4 +159,4 @@ module.exports = {
 ## [>] `require('dotenv').config(path/to/env/file)`
 ## [>] Dotenv loads environment variables from a .env file into process.env.
 
-# Sequelize
+# Sequelize | Authentication on FullStack Site

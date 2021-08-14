@@ -3,3 +3,4 @@ bundle.js
 bundle.js.map
 bundle.js.LICENSE.txt
 .env
+/keys/id_rsa_priv.pem

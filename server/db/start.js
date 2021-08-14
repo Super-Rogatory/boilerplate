@@ -1,7 +1,7 @@
 // The following is in the `start.js` file
 
-// say our sequelize instance is create in 'db.js'
-const db = require('./db.js');
+// say our sequelize instance is created in 'db.js'
+const db = require('./db');
 const app = require('../../app');
 const PORT = process.env.PORT || 8080;
 
